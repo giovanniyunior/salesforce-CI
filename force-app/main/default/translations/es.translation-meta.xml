@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>Hi, I&apos;m Giovanni and want to translate this text.</label>
+        <name>ErrorMessage</name>
+    </customLabels>
+    <customTabs>
+        <label><!-- Bike Card --></label>
+        <name>Bike_Card</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Bike Selection --></label>
+        <name>Bike_Selection</name>
+    </customTabs>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SendEmail --></label>
+        <name>SendEmail</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- Flujos de pantalla --></description>
+        <label><!-- Flujos de pantalla --></label>
+        <name>screen_flows_prebuilt_crt</name>
+        <sections>
+            <label><!-- Entradas de registro de entrevistas de flujo --></label>
+            <name>Entradas de registro de entrevistas de flujo</name>
+        </sections>
+        <sections>
+            <label><!-- Registros de entrevistas de flujo --></label>
+            <name>Registros de entrevistas de flujo</name>
+        </sections>
+    </reportTypes>
+</Translations>

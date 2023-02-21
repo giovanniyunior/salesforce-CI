@@ -1,0 +1,43 @@
+<template>
+    <article class="slds-card slds-card_boundary">
+
+        <div class="slds-page-header">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure slds-icon_container">
+                                <lightning-icon icon-name= {iconName} alternative-text="Account" title="Account"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-page-header__name slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-truncate"
+                                            title="BarcodeScanner">{title}</span>
+                                    </h1>
+                            </div>
+                            <p class="slds-page-header__name-meta">{subTitle}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <lightning-card variant="narrow">
+            <div class="slds-card__body slds-card__body_inner">
+                <template if:true={scanComponent}>
+                    <c-test-scanner get-id-from-parent = {recordId}></c-test-scanner>
+                </template>
+                <template if:true={recordComponent}>
+                    <c-record-form get-id-from-parent = {recordId}></c-record-form>
+                </template>
+                <template if:true={tableComponent}>
+                    <c-table-component></c-table-component>
+                </template>
+                <template if:true={assistComponent}>
+                    <c-asistente-meli></c-asistente-meli>
+                </template>
+            </div>
+        </lightning-card>
+    </article>
+
+</template>

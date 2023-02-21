@@ -1,0 +1,88 @@
+<template>
+  <div class="slds-table_edit_container slds-is-relative">
+    <table aria-multiselectable="true"
+      class="slds-table slds-no-cell-focus slds-table_bordered slds-table_edit slds-table_fixed-layout slds-table_resizable-cols">
+      <thead>
+        <tr class="slds-line-height_reset">
+          <th class="slds-text-align_right slds-cell_action-mode" scope="col" style="width: 2rem">
+            <span class="slds-assistive-text">Choose a row</span>
+            <div class="slds-th__action  slds-th__action_form">
+              <div class="slds-checkbox">
+                <input type="checkbox" name="test" />
+                <label class="slds-checkbox__label" for="test">
+                  <span class="slds-checkbox_faux"></span>
+                </label>
+
+              </div>
+
+            </div>
+          </th>
+
+          <template for:each={columns} for:item="col">
+            <th key={col.apiName} aria-label={col.label} aria-sort="none" class="slds-is-resizable slds-is-sortable slds-cell_action-mode" scope="col">
+              <a class="slds-th__action slds-text-link_reset " role="button" tabindex="0"  onclick={updateColumnSorting} name={col.apiName} >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-has-flexi-truncate">
+                    <span class="slds-truncate" title={col.label}>{col.label}</span>
+                    <span class="slds-icon_container slds-icon-utility-arrowdown slds-icon slds-icon-text-default slds-is-sortable__icon slds-float_right" style="color: rgb(5, 98, 138);">
+                      <lightning-icon class="slds-current-color slds-icon_xx-small" icon-name={arrowIcon} size="xx-small"></lightning-icon>
+                    </span>
+                    <div class="slds-col slds-col_bump-right">
+                      <span
+                        class="slds-icon_container slds-icon-utility-arrowdown slds-icon slds-icon-text-default slds-is-sortable__icon slds-float_right">
+                        <lightning-icon icon-name="utility:chevrondown" size="x-small"></lightning-icon>
+                      </span>
+                    </div>
+                  </div>
+              </a>
+              <div class="slds-resizable">
+                <input type="range" aria-label="column width" class="slds-assistive-text" max="1000" min="20"
+                  tabindex="0" />
+                <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                </span>
+              </div>
+            </th>
+
+          </template>
+
+          <th class="slds-cell_action-mode" scope="col" style="width: 2.3rem">
+            <div class="slds-truncate slds-assistive-text" title="Actions">Actions</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <template for:each={records} for:item="row">
+          <tr key={row.key} aria-selected="false" class="slds-hint-parent">
+            <td class="slds-text-align_right slds-cell_action-mode" role="gridcell">
+              <div class="slds-checkbox">
+                <input type="checkbox" name="options" value={row.key} tabindex="0"
+                  aria-labelledby="check-button-label-01 column-group-header" />
+                <label class="slds-checkbox__label" for="checkbox-01">
+                  <span class="slds-checkbox_faux"></span>
+                  <span class="slds-form-element__label slds-assistive-text">Select item 1</span>
+                </label>
+              </div>
+            </td>
+            <template for:each={row.fields} for:item="field">
+              <th key={field} class="slds-cell_action-mode" scope="row">
+                <div class="slds-truncate" title={field.value}>
+                  <a href="#" tabindex="0">{field.value}</a>
+                </div>
+              </th>
+            </template>
+            <td class="slds-cell_action-mode" role="gridcell">
+              <button class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small"
+                aria-haspopup="true" tabindex="0" title="More actions for Acme - 1,200 Widgets">
+                <svg class="slds-button__icon slds-button__icon_hint slds-button__icon_small" aria-hidden="true">
+                  <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg?cache=9.40.4#down"></use>
+                </svg>
+                <span class="slds-assistive-text">More actions for Acme - 1,200 Widgets</span>
+              </button>
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </div>
+</template>

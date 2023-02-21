@@ -1,0 +1,44 @@
+<template>
+    <div class="slds-p-around_medium">
+        <lightning-quick-action-panel header="Asistente">
+
+            <lightning-input type="TPV" label="Digitar Identificación" onchange={handleInputChange} required></lightning-input>
+            <lightning-input type="Site Id" label="Digitar Identificación" onchange={handleInputChange} required></lightning-input>
+            <div>
+                <lightning-combobox
+                name="Tipo"
+                label="Tipo de Identificación"
+                value=""
+                placeholder="Seleccionar"
+                options={options}
+                onchange={handleChange}
+                required
+                ></lightning-combobox>
+            </div>
+            <lightning-input type="Identificación" label="Digitar Identificación" onchange={handleInputChange} required></lightning-input>
+            <div>
+                <lightning-combobox
+                name="operacion"
+                label="Operación más frecuente"
+                value=""
+                placeholder="Seleccionar"
+                options={options}
+                onchange={handleChange}
+                required
+                ></lightning-combobox>
+            </div>
+    
+        </lightning-quick-action-panel>
+
+    </div>
+
+    <footer class="slds-modal__footer">
+        <template if:true={showNegative}>
+            <button class="slds-button slds-button_neutral" onclick={handleNegative}>{negativeButtonLabel}</button>
+        </template>
+        <template if:true={showPositive}>
+            <button class="slds-button slds-button_brand" onclick={handlePositive}>{positiveButtonLabel}</button>
+        </template>
+    </footer>
+
+</template>

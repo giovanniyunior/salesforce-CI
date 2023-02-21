@@ -29,6 +29,12 @@ jobs:
         # of ubuntu
         runs-on: ubuntu-latest
         if: ${{ github.actor != 'dependabot[bot]' }}
+        permissions:
+          # required for all workflows
+          security-events: write
+          # only required for workflows in private repositories
+          actions: read
+          contents: read
         steps:
             # Now we install nodejs in the VM, and specify version 14
             - uses: actions/setup-node@v3

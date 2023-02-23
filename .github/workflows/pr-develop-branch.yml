@@ -158,13 +158,45 @@ jobs:
             - name: 'Scan code'
               run: |
                   cd changed-sources
-                  sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'  
+                  sfdx scanner:run --format json --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.json'  
                   cd ..
-            # Now we upload the .sarif file as explained in the previous step
-            - name: Upload SARIF file
-              uses: github/codeql-action/upload-sarif@v2
+            # Add Comment to the PR 
+            - name: Add Comment on PR
+              uses: actions/github-script@v6
               with:
-                sarif_file: changed-sources/apexScanResults.sarif
+                  script: |
+                    // Get a list of all issues created by the PR opener
+                    // See: https://octokit.github.io/rest.js/#pagination
+                    const creator = context.payload.sender.login
+                    const opts = github.rest.issues.listForRepo.endpoint.merge({
+                      ...context.issue,
+                      creator,
+                      state: 'all'
+                    })
+                    const issues = await github.paginate(opts)
+
+                    for (const issue of issues) {
+                      if (issue.number === context.issue.number) {
+                        continue
+                      }
+
+                      if (issue.pull_request) {
+                        return // Creator is already a contributor.
+                      }
+                    }
+
+                    await github.rest.issues.createComment({
+                      issue_number: context.issue.number,
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      body: changed-sources/apexScanResults.json
+                    })
+   
+            # Now we upload the .sarif file as explained in the previous step
+            # - name: Upload SARIF file
+            # uses: github/codeql-action/upload-sarif@v2
+            # with:
+            #   sarif_file: changed-sources/apexScanResults.sarif
 
             # We do a check-only deploy and we only run the tests specified in the PR
             # If the env variable does not equal 'all', we know that there is a list of
